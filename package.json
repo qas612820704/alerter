@@ -7,6 +7,7 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "auth0-js": "^9.10.0",
+    "axios": "^0.18.0",
     "debug": "^4.1.1",
     "gatsby": "^2.1.2",
     "gatsby-plugin-typography": "^2.2.7",
@@ -21,6 +22,7 @@
     "typography-theme-wordpress-2015": "^0.16.18"
   ***REMOVED***,
   "scripts": {
-    "start": "gatsby develop -p 5000"
+    "start:client": "gatsby develop -p 5000",
+    "start:webtask": "cd webtask; npm start"
   ***REMOVED***
 ***REMOVED***

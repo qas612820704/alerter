@@ -1,3 +1,4 @@
+import axios from './ultis/axios';
 import { WebAuth ***REMOVED*** from 'auth0-js';
 import { AUTH0_CONFIG ***REMOVED*** from '../../config';
 import * as debug from '../logger';
@@ -47,6 +48,17 @@ export async function authentication() {
       return resolve(auth);
     ***REMOVED***)
   ***REMOVED***);
+***REMOVED***
+
+export async function register(auth) {
+  const response = await axios.post('/register', auth.idTokenPayload);
+
+  const { data ***REMOVED*** = response;
+
+  debug.api('register', data);
+
+  return data;
+
 ***REMOVED***
 
 export default auth0;

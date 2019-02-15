@@ -1,6 +1,9 @@
 import { useCallback, useMemo ***REMOVED*** from 'react';
 import { useMappedState, useDispatch ***REMOVED*** from 'redux-react-hook';
-import { authentication, updateProfile ***REMOVED*** from '../redux/actions';
+import {
+  authentication, updateProfile,
+  setAccessTokenToAxios,  registerIfNeeded
+***REMOVED*** from '../redux/actions';
 
 
 export function useIsLogin() {
@@ -33,13 +36,18 @@ export function useUserProfile() {
   return useMappedState(mapUserProfileState);
 ***REMOVED***
 
+
 export function useDispatchAuthentication() {
   const dispatch = useDispatch();
 
   return useMemo(async () => {
     const auth = await dispatch(authentication());
 
-    dispatch(updateProfile(auth.idTokenPayload));
+    dispatch(setAccessTokenToAxios(auth.accessToken));
+
+    const profile = await dispatch(registerIfNeeded(auth));
+
+    dispatch(updateProfile(profile));
 
     return auth;
   ***REMOVED***, []);

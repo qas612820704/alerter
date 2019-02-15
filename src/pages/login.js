@@ -15,7 +15,13 @@ export default function Index() {
 
   return (
     <Layout>
-      <h1>River — <small style={{ color: 'var(--secondary-color)' ***REMOVED******REMOVED***>Read it forever!</small></h1>
+      <h1>
+        Alerter
+        <span> </span>
+        <small style={{ color: 'var(--secondary-color)' ***REMOVED******REMOVED***>
+        — alerter it, yeah!
+        </small>
+      </h1>
       <p>
         Please
         <LoginBtn onClick={handleLogin***REMOVED***>log in</LoginBtn>

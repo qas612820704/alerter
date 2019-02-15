@@ -69,4 +69,44 @@ export function authentication() {
   ***REMOVED***
 ***REMOVED***
 
+export function setAccessTokenToAxios(accessToken) {
+  return async (dispatch, getState, apis) => {
+    dispatch(
+      setAuthInfoMessage('set accessToken to axios...')
+    );
+
+    apis.axiosSetHeaders({ 'Authorization': `Bearer ${accessToken***REMOVED***`***REMOVED***);
+
+    dispatch(
+        setAuthInfoMessage('set accessToken to axios done')
+    );
+  ***REMOVED***
+***REMOVED***
+
+export function registerIfNeeded(auth) {
+  return async (dispatch, getState, apis) => {
+    dispatch(
+      setAuthInfoMessage('register if needed...')
+    );
+
+    let profile;
+    try {
+      profile = await apis.register(auth);
+
+    ***REMOVED*** catch (err) {
+      dispatch(
+        setAuthErrorMessage(`${err.name***REMOVED*** ${err.message***REMOVED***`)
+      );
+
+      throw err;
+    ***REMOVED***
+
+    dispatch(
+      setAuthInfoMessage('register if needed done')
+    );
+
+    return profile;
+  ***REMOVED***
+***REMOVED***
+
 export default auth;

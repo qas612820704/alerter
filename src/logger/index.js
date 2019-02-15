@@ -1,3 +1,3 @@
 import debug from 'debug';
 
-export const api = debug('river:api');
+export const api = debug('alerter:api');
