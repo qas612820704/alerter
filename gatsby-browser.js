@@ -4,4 +4,4 @@ export const wrapRootElement = wrapRedux;
 
 export const onClientEntry = () => {
   localStorage.debug = 'alerter:*';
-***REMOVED***
+}

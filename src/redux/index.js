@@ -1,4 +1,4 @@
-import { createStore as reduxCreateStore, compose, applyMiddleware ***REMOVED*** from "redux"
+import { createStore as reduxCreateStore, compose, applyMiddleware } from "redux"
 import thunk from 'redux-thunk';
 import reducer from './reducer';
 import * as apis from '../apis';

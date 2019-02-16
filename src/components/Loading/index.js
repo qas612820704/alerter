@@ -16,24 +16,24 @@ const PerfectCenter = styled.div`
   right: 0;
 `;
 
-function Loading({ children ***REMOVED***) {
+function Loading({ children }) {
   return (
     <PerfectCenter>
-      <div style={{ textAlign: 'center' ***REMOVED******REMOVED***>
-        <img src={loading***REMOVED*** alt="loadding..." />
-        { children ***REMOVED***
+      <div style={{ textAlign: 'center' }}>
+        <img src={loading} alt="loadding..." />
+        { children }
       </div>
     </PerfectCenter>
   )
-***REMOVED***
+}
 
-function OnError({ children ***REMOVED***) {
-  return <pre style={{ color: 'var(--red)' ***REMOVED******REMOVED***>{children***REMOVED***</pre>
-***REMOVED***
+function OnError({ children }) {
+  return <pre style={{ color: 'var(--red)' }}>{children}</pre>
+}
 
-function OnInfo({ children ***REMOVED***) {
-  return <pre>{children***REMOVED***</pre>
-***REMOVED***
+function OnInfo({ children }) {
+  return <pre>{children}</pre>
+}
 
 
 Loading.Error = OnError;

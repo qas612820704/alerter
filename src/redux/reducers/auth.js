@@ -1,7 +1,7 @@
 import {
   setAuthInfoMessage,
   setAuthErrorMessage
-***REMOVED*** from './messages';
+} from './messages';
 
 const UPDATE_AUTH = 'UPDATE_AUTH';
 const CLEAR_AUTH = 'CLEAR_AUTH';
@@ -10,7 +10,7 @@ const initialState = {
   accessToken: '',
   idToken: '',
   expiresAt: Date.now(),
-***REMOVED***
+};
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
@@ -18,24 +18,24 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-      ***REMOVED***
+      }
     case CLEAR_AUTH:
       return initialState;
     default:
       return state;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export function updateAuth(auth) {
   return {
     type: UPDATE_AUTH,
     payload: auth,
-  ***REMOVED***
-***REMOVED***
+  };
+}
 
 export function clearAuth() {
-  return { type: CLEAR_AUTH ***REMOVED***
-***REMOVED***
+  return { type: CLEAR_AUTH };
+}
 
 export function authentication() {
   return async (dispatch, getState, apis) => {
@@ -45,14 +45,14 @@ export function authentication() {
       );
 
       const auth = await apis.authentication();
-      const { accessToken, idToken, expiresIn ***REMOVED*** = auth;
+      const { accessToken, idToken, expiresIn } = auth;
 
       dispatch(
         updateAuth({
           accessToken,
           idToken,
           expiresAt: Date.now() + expiresIn * 1000,
-        ***REMOVED***)
+        })
       );
 
       dispatch(
@@ -60,14 +60,14 @@ export function authentication() {
       );
 
       return auth;
-    ***REMOVED*** catch (err) {
+    } catch (err) {
       dispatch(
-        setAuthErrorMessage(`${err.name***REMOVED*** — ${err.message***REMOVED***`)
+        setAuthErrorMessage(`${err.name} — ${err.message}`)
       );
       throw err;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 export function setAccessTokenToAxios(accessToken) {
   return async (dispatch, getState, apis) => {
@@ -75,13 +75,13 @@ export function setAccessTokenToAxios(accessToken) {
       setAuthInfoMessage('set accessToken to axios...')
     );
 
-    apis.axiosSetHeaders({ 'Authorization': `Bearer ${accessToken***REMOVED***`***REMOVED***);
+    apis.axiosSetHeaders({ 'Authorization': `Bearer ${accessToken}`});
 
     dispatch(
         setAuthInfoMessage('set accessToken to axios done')
     );
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export function registerIfNeeded(auth) {
   return async (dispatch, getState, apis) => {
@@ -93,20 +93,20 @@ export function registerIfNeeded(auth) {
     try {
       profile = await apis.register(auth);
 
-    ***REMOVED*** catch (err) {
+    } catch (err) {
       dispatch(
-        setAuthErrorMessage(`${err.name***REMOVED*** ${err.message***REMOVED***`)
+        setAuthErrorMessage(`${err.name} ${err.message}`)
       );
 
       throw err;
-    ***REMOVED***
+    }
 
     dispatch(
       setAuthInfoMessage('register if needed done')
     );
 
     return profile;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 export default auth;

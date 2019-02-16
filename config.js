@@ -1,16 +1,12 @@
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+export const AUTH0_CONFIG = {
+  domain: 'lego.auth0.com',
+  clientId: 'Eg0j35srDHwcJoC2jrVfb4n1xzKhRdMJ',
+  redirectUri: process.env.NODE_ENV === 'development'
+    ? 'http://localhost:5000/callback'
+    : `https://alerter.lego-is.me/callback`,
+  audience: 'https://alerter.lego-is.me',
+};
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-export const MONGODB = {
-  uri: 'mongodb://lego:hb2e5iRei2AAMnh@river-shard-00-00-0f26z.mongodb.net:27017,river-shard-00-01-0f26z.mongodb.net:27017,river-shard-00-02-0f26z.mongodb.net:27017/alerter?ssl=true&replicaSet=River-shard-0&authSource=admin&retryWrites=true'
-***REMOVED***
+export const WEBTASK = {
+  uri: 'https://wt-1951fb5147811432447ab6e0f150d690-0.sandbox.auth0-extend.com/alerter'
+}

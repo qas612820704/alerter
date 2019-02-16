@@ -5,7 +5,7 @@ module.exports = {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/layout/typography`,
-      ***REMOVED***,
-    ***REMOVED***,
+      },
+    },
   ],
-***REMOVED***
+}

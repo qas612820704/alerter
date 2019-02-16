@@ -20,9 +20,9 @@
     "redux-thunk": "^2.3.0",
     "typography": "^0.16.18",
     "typography-theme-wordpress-2015": "^0.16.18"
-  ***REMOVED***,
+  },
   "scripts": {
     "start:client": "gatsby develop -p 5000",
     "start:webtask": "cd webtask; npm start"
-  ***REMOVED***
-***REMOVED***
+  }
+}

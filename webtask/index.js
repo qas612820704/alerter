@@ -1,23 +1,23 @@
 import express from 'express';
 import cors from 'cors';
 import jwt from 'express-jwt';
-import { expressJwtSecret ***REMOVED*** from 'jwks-rsa';
-import { fromExpress ***REMOVED*** from 'webtask-tools';
+import { expressJwtSecret } from 'jwks-rsa';
+import { fromExpress } from 'webtask-tools';
 
 import connectToDatabase from './database';
 import User from './models/User';
 
-import { AUTH0_CONFIG ***REMOVED*** from '../config';
+import { AUTH0_CONFIG } from '../config';
 
 connectToDatabase(() => {
   console.log('Database connected');
-***REMOVED***);
+});
 
 const app = express();
 
 if (!AUTH0_CONFIG.domain || !AUTH0_CONFIG.audience) {
   throw 'Make sure you have AUTH0_CONFIG.domain, and AUTH0_CONFIG.audience in your config file'
-***REMOVED***
+}
 
 app.use(cors());
 app.use(express.json());
@@ -28,41 +28,41 @@ app.use(jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${AUTH0_CONFIG.domain***REMOVED***/.well-known/jwks.json`
-  ***REMOVED***),
+    jwksUri: `https://${AUTH0_CONFIG.domain}/.well-known/jwks.json`
+  }),
 
   // Validate the audience and the issuer.
   audience: AUTH0_CONFIG.audience,
-  issuer: `https://${AUTH0_CONFIG.domain***REMOVED***/`,
+  issuer: `https://${AUTH0_CONFIG.domain}/`,
   algorithms: ['RS256']
-***REMOVED***));
+}));
 
 app.use(handleUnauthorizedError);
 function handleUnauthorizedError(err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({
       message: 'invalid token'
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***
+    });
+  }
+}
 
 app.get('/ping', (req, res) => {
-  res.json({ message: 'pong' ***REMOVED***);
-***REMOVED***);
+  res.json({ message: 'pong' });
+});
 
 app.post('/register', async (req, res) => {
-  const { sub: _id ***REMOVED*** = req.body;
+  const { sub: _id } = req.body;
 
-  let user = await User.findOne({ _id ***REMOVED***);
+  let user = await User.findOne({ _id });
   if (!user) {
-    console.log(`${user***REMOVED*** not found: create one`);
+    console.log(`${user} not found: create one`);
     user = await new User({
       _id,
       ...req.body,
-    ***REMOVED***).save();
-  ***REMOVED***
+    }).save();
+  }
 
   res.json(user);
-***REMOVED***);
+});
 
 module.exports = fromExpress(app);
